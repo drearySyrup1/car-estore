@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import mainImage from "./imgs/main.jpg";
+import nissanGtr from "./imgs/cars/nissan-gtr.jpg";
+import TopBar from "./components/TopBar";
+import Cart from "./components/Cart";
+import ShopListings from "./components/ShopListings";
 
+import { useGlobalContext } from "./components/GlobalContext";
 function App() {
+  const { isCartOpen } = useGlobalContext();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <TopBar />
+      <div className="wrapper">
+        <div className="main-img">
+          <div className="main-img-text">
+            <p>Ferrari Spider</p>
+          </div>
+          <div className="overlay"></div>
+          <img src={mainImage} alt="" />
+        </div>
+        <ShopListings />
+        {
+          <Cart
+            className={isCartOpen ? "show-cart" : ""}
+            img={nissanGtr}
+          />
+        }
+      </div>
+    </>
   );
 }
 
